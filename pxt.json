@@ -4,9 +4,7 @@
     "dependencies": {
         "core": "*",
         "bluetooth": "*",
-        "microphone": "*",
-        "bluetooth-beacons": "github:kshoji/pxt-bluetooth-beacons#v0.0.2",
-        "BlockyTalky-BLE": "github:laboratoryforplayfulcomputation/pxt-blockytalkyble#v0.0.21"
+        "microphone": "*"
     },
     "files": [
         "main.blocks",
@@ -28,7 +26,7 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj",
+    "preferredEditor": "blocksprj",
     "yotta": {
         "config": {
             "microbit-dal": {
