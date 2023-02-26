@@ -1,24 +1,32 @@
 bluetooth.onBluetoothConnected(function () {
     basic.showIcon(IconNames.SmallSquare)
     connected = 1
-    while (connected == 1) {
-        uartData = bluetooth.uartReadUntil(serial.delimiters(Delimiters.SemiColon))
-        basic.showString(uartData)
-    }
 })
 bluetooth.onBluetoothDisconnected(function () {
     basic.showIcon(IconNames.Square)
+    connected = 0
 })
 input.onButtonPressed(Button.A, function () {
-    bluetooth.uartWriteString("Hi")
-    music.playTone(262, music.beat(BeatFraction.Half))
+    bluetooth.setTransmitPower(3)
+    basic.showString("HIGH")
+    if (connected == 0) {
+        basic.showIcon(IconNames.Square)
+    } else {
+        basic.showIcon(IconNames.SmallSquare)
+    }
 })
-bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-    basic.showIcon(IconNames.Heart)
+input.onButtonPressed(Button.B, function () {
+    bluetooth.setTransmitPower(0.5)
+    basic.showString("LOW")
+    if (connected == 1) {
+        basic.showIcon(IconNames.SmallSquare)
+    } else {
+        basic.showIcon(IconNames.Square)
+    }
 })
-let uartData = ""
 let connected = 0
 bluetooth.startUartService()
+basic.showString("HIGH")
 basic.showString("ON")
+bluetooth.setTransmitPower(3)
 basic.showIcon(IconNames.Square)
-bluetooth.uartWriteNumber(0)
